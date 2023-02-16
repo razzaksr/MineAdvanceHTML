@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Framing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script>
+        const myfun=()=>{
+            window.frames[0].location='http://127.0.0.1:5500/centering.html'
+        }
+        const myfuns=()=>{
+            window.frames[0].document.body.style.background="linear-gradient(45deg,red,blue)"
+        }
+        const myfuning=()=>{
+            //window.frames[1].document.body.style.backgroundColor="beige"
+            window.frames[1].document.getElementById("tab").getElementsByTagName("tr")[1].style.color="blue";
+        }
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <button onclick="alert(window.frames[0].location+' '+window.frames[1].location);">Hai</button>
+        <button onclick="myfun()">Change</button>
+        <button onclick="myfuns()">Background</button>
+        <button onclick="myfuning()">Change</button>
+        <div class="row justify-content-center">
+            <iframe class="col-6" style="height: 100vh;" src="tablepag.html"></iframe>
+            <iframe class="col-6" src="tablesearch.html"></iframe>
+        </div>
+    </div>
+</body>
+</html>
