@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation part</title>
+    <script>
+        const valids=()=>{
+            const name=document.forms["hai"].fullname.value
+            const mob=document.forms["hai"].mobile.value
+            const pass=document.forms["hai"].pass.value
+            document.getElementById("errname").innerHTML=""
+            document.getElementById("errmob").innerHTML=""
+            document.getElementById("errpass").innerHTML=""
+            let status=true
+
+            if(!(/[A-Za-z]+$/).test(name)){
+                document.getElementById("errname").innerHTML="Invalid name"
+                status=false;
+            }
+            
+            // both are same 
+            //if(!(/[0-9]{10,}$/).test(mob)){
+            if((/^[0-9]{10,}$/).test(mob)){
+                document.getElementById("errmob").innerHTML="Invalid number"
+                status=false;
+            }
+            if(!(/(?=.*[0-9])(?=.*[$#@!*])[A-Za-z0-9@$#!*]{8,}/).test(pass)){
+                document.getElementById("errpass").innerHTML="Invalid password"
+                status=false;
+            }
+            return status
+        }
+    </script>
+    <style>
+        span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form name="hai" onsubmit="return valids()">
+        <span id="errname"></span>
+        <input type="text" name="fullname" placeholder="Full Name" />
+        <span id="errmob"></span>
+        <input type="tel" name="mobile" placeholder="Mobile number" />
+        <span id="errpass"></span>
+        <input type="password" name="pass" placeholder="PAssword please" />
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
