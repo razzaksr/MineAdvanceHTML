@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(()=>{
+            $("form[name='hai']").submit(()=>{
+                $("#err").hide()
+                //alert($("input[name=data1]").val())
+                let d1=$("input[name=data1]").val()
+                //alert(d1+" content")
+                //alert($("#err").text())
+                if(d1===""){
+                    $("#err").text("Name error")
+                    $("#err").show()
+                    return false
+                }
+                else{
+                    return true
+                }
+            })
+            $("form[name='hai']").mouseenter(()=>{
+                $("input[name='data2']").val("This")
+            })
+        })
+    </script>
+</head>
+<body>
+    <form name="hai">
+        <input type="text" name="data1" /><span id="err">heyyyy</span>
+        <input type="text" name="data2" />
+        <input type="submit" value="send"/>
+    </form>    
+</body>
+</html>
