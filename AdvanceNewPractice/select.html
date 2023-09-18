@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="data.js"></script>
+    <script>
+        $(document).ready(()=>{
+            $("[name='year']").change((eve)=>{
+                let yr=eve.target.value
+                let filteredYear=[]
+                alert("Form select "+yr)
+                if(yr === "2020-21"){
+                    filteredYear=filterByYear(2020)
+                }
+                else if(yr === "2021-22"){
+                    filteredYear=filterByYear(2021)
+                }
+                else if(yr === "2022-23"){
+                    filteredYear=filterByYear(2022)
+                }
+                else if(yr === "2023-24"){
+                    filteredYear=filterByYear(2023)
+                }
+                else{
+                    alert("Invalid year")
+                }
+                if(filteredYear.length!=0){
+                    let departs="<option>Select Department</option>"
+                    filteredYear.map((v)=>{
+                        departs+="<option>"+v.Department+"</option>"
+                    })
+                    $("[name='dept']").html(departs)
+                }
+                else{
+                    $("[name='dept']").html("<option>No option</option>")
+                }
+            })
+            $("[name='dept']").change((eve)=>{
+                let dp=eve.target.value
+                let filteredStaffs=[]
+                alert("Form select "+dp)
+                filteredStaffs=filterByDept(dp)
+                if(filteredStaffs.length!=0){
+                    let staffs="<option>Select Staff</option>"
+                    filteredStaffs.map((v)=>{
+                        staffs+="<option>"+v.name+"</option>"
+                    })
+                    $("[name='faculties']").html(staffs)
+                }
+                else{
+                    $("[name='faculties']").html("<option>No option</option>")
+                }
+            })
+            $("[name='faculties']").change((eve)=>{
+                const stf=eve.target.value
+                const dept=$("[name='dept']").val()
+                const detail=filterOneStaffByDeptNname(stf,dept)
+                $("#result").text(JSON.stringify(detail))
+            })
+        })
+    </script>
+</head>
+<body>
+    <select name="year">
+        <option>Select Year</option>
+        <option>2020-21</option>
+        <option>2021-22</option>
+        <option>2022-23</option>
+        <option>2023-24</option>
+    </select>
+    <select name="dept"></select>
+    <select name="faculties"></select>
+    <h1 id="result"></h1>
+</body>
+</html>
