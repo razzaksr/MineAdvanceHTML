@@ -51,6 +51,7 @@ $(document).ready(()=>{
         });
     }
     */
+    /*
     function updatePagination() {
         var totalPages = Math.ceil(repository.length / rowsPerPage);
         var pagination = $('#pagination');
@@ -62,6 +63,36 @@ $(document).ready(()=>{
         }
 
         pagination.append('<span class="col-1 current-page">' + currentPage + ' / ' + totalPages + '</span>');
+        
+        // Next button
+        if (currentPage < totalPages) {
+            pagination.append('<button class="next col-1 btn btn-outline-primary me-2"> -> </button>');
+        }
+
+        $('button').click(function() {
+            var btn = $(this);
+            if (btn.hasClass('prev')) {
+                currentPage--;
+            } else if (btn.hasClass('next')) {
+                currentPage++;
+            }
+            displayRows();
+            updatePagination();
+        });
+    }
+    */
+    function updatePagination() {
+        var totalPages = Math.ceil(repository.length / rowsPerPage);
+        var pagination = $('#pagination');
+        pagination.empty();
+        
+        // Previous button
+        if (currentPage > 1) {
+            pagination.append('<button class="prev col-1 btn btn-outline-primary me-2"> <- </button>');
+        }
+
+        //pagination.append('<span class="col-1 current-page">' + currentPage + ' / ' + totalPages + '</span>');
+        pagination.append('<button class="col-1 btn btn-outline-primary me-2" data-page="' + currentPage + '">' + currentPage + '</button>');
         
         // Next button
         if (currentPage < totalPages) {
